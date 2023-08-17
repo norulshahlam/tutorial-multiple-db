@@ -1,0 +1,61 @@
+server:
+  port: 8087
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+spring:
+  datasource:
+    show-sql: true
+    postgres:
+      driver-class-name: org.hibernate.dialect.PostgreSQLDialect
+      url: jdbc:postgresql://localhost:5432/postgres
+      username: admin
+      password: password
+      schema: dev
+      auto-commit: true
+      generate-ddl: true
+      show-sql: true
+      ddl-auto: create-drop
+      format_sql: true0
+    mysql:
+      driver-class-name: org.hibernate.dialect.MySQLDialect
+      url: jdbc:mysql://localhost:3306/mysql?allowPublicKeyRetrieval=true&useSSL=false
+      username: root
+      password: password
+      auto-commit: true
+      generate-ddl: true
+      show-sql: true
+      ddl-auto: create
+      format_sql: true
+    oracle:
+      driver-class-name: org.hibernate.dialect.Oracle12cDialect
+      url: jdbc:oracle:thin:@//localhost:1521/xe
+      username: system
+      password: password
+      maximum-pool-size: 20
+      minimum-idle: 10
+      generate-ddl: true
+      show-sql: true
+      ddl-auto: create
+      format_sql: true
+  sql:
+    init:
+      mode: always
+  batch:
+    job:
+      enabled: false
+    initialize-schema: ALWAYS
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

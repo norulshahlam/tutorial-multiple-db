@@ -1,0 +1,12 @@
+openapi:
+  project-title: Multiple database configuration
+  project-version: v1
+  project-description: Tutorial on how to setup multiple databases with Spring Jpa
+spring-doc:
+  pathsToMatch: /api/**
+spring:
+  application:
+    name: tutorial-multiple-database-configuration
+    description: Tutorial on how to setup multiple databases with Spring Jpa
+  profiles:
+    active: dev
