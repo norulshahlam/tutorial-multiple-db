@@ -1,11 +1,9 @@
 package com.shah.multipledb.entity.postgres;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,12 +14,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Table(schema = "dev")
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Schema(type = "string", example = "posb", description = "name of bank on card")
-    private String name;
+    private String bankName;
     @Schema(type = "int", example = "12")
     private int expirationMonth;
     @Schema(type = "int", example = "2000")

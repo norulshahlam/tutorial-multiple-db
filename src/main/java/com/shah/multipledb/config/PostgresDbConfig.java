@@ -9,7 +9,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -51,18 +54,6 @@ public class PostgresDbConfig {
                 .build();
     }
 
-//    @Bean
-//    @ConfigurationProperties("spring.datasource.postgres")
-//    public DataSourceInitializer dataSourceInitializer(DataSource ds) {
-//        ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
-//        resourceDatabasePopulator.addScript(new ClassPathResource("/data.sql"));
-//
-//        DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-//        dataSourceInitializer.setDataSource(ds);
-//        dataSourceInitializer.setDatabasePopulator(resourceDatabasePopulator);
-//        return dataSourceInitializer;
-//    }
-
     @Bean(name = "postgresManagerFactory")
     public LocalContainerEntityManagerFactoryBean postgresManagerFactory(
     ) {
@@ -88,4 +79,22 @@ public class PostgresDbConfig {
             final @Qualifier("postgresManagerFactory") LocalContainerEntityManagerFactoryBean postgresManagerFactory) {
         return new JpaTransactionManager(postgresManagerFactory.getObject());
     }
+
+    /**
+     * For running script
+     **/
+    @Bean
+    public DataSourceInitializer dataSourceInitializer(@Qualifier("postgresDataSource") DataSource dataSource) {
+        DataSourceInitializer initializer = new DataSourceInitializer();
+        initializer.setDataSource(dataSource);
+        initializer.setDatabasePopulator(databasePopulator());
+        return initializer;
+    }
+
+    private ResourceDatabasePopulator databasePopulator() {
+        ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+        populator.addScript(new ClassPathResource("postgres-schema.sql"));
+        return populator;
+    }
+
 }

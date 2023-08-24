@@ -1,5 +1,6 @@
 package com.shah.multipledb.controller;
 
+import com.shah.multipledb.entity.postgres.Account;
 import com.shah.multipledb.entity.postgres.Card;
 import com.shah.multipledb.service.CardService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +25,17 @@ public class CardController {
 
     private final CardService cardService;
 
-    @Operation(summary = "find Cards By bank Name Using Jpa", tags = "postgres database")
+    @Operation(summary = "Get all cards using Jpa", tags = "postgres database")
+    @ResponseStatus(HttpStatus.FOUND)
+    @GetMapping("getAllCardsUsingJpa")
+    public ResponseEntity<List<Card>> getAllCardsUsingJpa() {
+
+        return ResponseEntity
+                .status(HttpStatus.FOUND)
+                .body(cardService.getAllCardsUsingJpa());
+    }
+
+    @Operation(summary = "Find cards by bank name using Jpa", tags = "postgres database")
     @ResponseStatus(HttpStatus.FOUND)
     @GetMapping("findCardsByNameUsingJpa")
     public ResponseEntity<List<Card>> findCardsByNameUsingJpa(
@@ -35,13 +46,13 @@ public class CardController {
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
-                .body(cardService.findByName(name));
+                .body(cardService.findByBankName(name));
     }
 
-    @Operation(summary = "find Cards By bank Name Using Jpql", tags = "postgres database")
+    @Operation(summary = "Find Cards By expiration month and expiration year using Jpql", tags = "postgres database")
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("findCardsByNameUsingJpql")
-    public ResponseEntity<List<Card>> findCardsByNameUsingJpql(
+    @GetMapping("findByExpirationMonthAndExpirationYearUsingJpql")
+    public ResponseEntity<List<Card>> findByExpirationMonthAndExpirationYear(
             @Parameter(description = "Month of expiration", example = "12")
             @RequestParam
             @NotBlank
@@ -53,17 +64,19 @@ public class CardController {
 
         return ResponseEntity
                 .status(HttpStatus.FOUND)
-                .body(cardService.findByExpirationMonthAndExpirationYear(expirationMonth, expirationYear));
+                .body(cardService.findByExpirationMonthAndExpirationYearUsingJpql(expirationMonth, expirationYear));
     }
 
-    @Operation(summary = "get all cards Using Jpa", tags = "postgres database")
+    @Operation(summary = "Find account by account type using native Sql. Returns Tuple", tags = "postgres database with Tuple handler")
     @ResponseStatus(HttpStatus.FOUND)
-    @GetMapping("getAllCardsUsingJpa")
-    public ResponseEntity<List<Card>> getAllCardsUsingJpa() {
-
+    @GetMapping("findAccountByAccountTypeUsingNativeSql")
+    public ResponseEntity<List<Account>> findAccountByAccountTypeUsingNativeSql(
+            @Parameter(description = "Type of account", example = "loan")
+            @RequestParam
+            @NotBlank
+            String accountType) {
         return ResponseEntity
                 .status(HttpStatus.FOUND)
-                .body(cardService.getAllCardsUsingJpa());
+                .body(cardService.findAccountByAccountTypeUsingNativeSql(accountType));
     }
-
 }

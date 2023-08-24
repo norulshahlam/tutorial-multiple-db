@@ -5,7 +5,7 @@ This tutorial shows how to run Spring Application using multiple databases. Data
 2. MySQL database
 3. Oracle database
 
-As a bonus we will also show how to make a native native query and how to handle them.
+As a bonus we will also show how to make a native query of `Tuple` type and how to handle them.
 
 ### Technology used
 1. Docker
@@ -45,7 +45,7 @@ Also make sure you change the configuration under driver properties.
 
 <b>Oracle</b>
 
-![Image](./src/main/resources/connection-Oracle.PNG)
+![Image](./src/main/resources/connection-oracle.PNG)
 
 If you are not sure what is the variable values for this, you can view inside:
 

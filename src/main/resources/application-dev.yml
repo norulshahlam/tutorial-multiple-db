@@ -21,7 +21,7 @@ spring:
       generate-ddl: true
       show-sql: true
       ddl-auto: create-drop
-      format_sql: true0
+      format_sql: true
     mysql:
       driver-class-name: org.hibernate.dialect.MySQLDialect
       url: jdbc:mysql://localhost:3306/mysql?allowPublicKeyRetrieval=true&useSSL=false

@@ -1,5 +1,6 @@
 package com.shah.multipledb.service;
 
+import com.shah.multipledb.entity.postgres.Account;
 import com.shah.multipledb.entity.postgres.Card;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface CardService {
      * @param name name of cardholder
      * @return list of cards
      */
-    List<Card> findByName(String name);
+    List<Card> findByBankName(String name);
 
     /**
      * Returns the card
@@ -21,7 +22,9 @@ public interface CardService {
      * @param year expirationYear
      * @return list of cards
      */
-    List<Card> findByExpirationMonthAndExpirationYear(int month, int year);
+    List<Card> findByExpirationMonthAndExpirationYearUsingJpql(int month, int year);
 
     List<Card> getAllCardsUsingJpa();
+
+    List<Account> findAccountByAccountTypeUsingNativeSql(String accountType);
 }
