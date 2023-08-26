@@ -5,7 +5,7 @@ import com.shah.multipledb.entity.postgres.Card;
 import com.shah.multipledb.repository.postgres.CardRepository;
 import com.shah.multipledb.service.CardService;
 import jakarta.persistence.Tuple;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,11 @@ import java.util.List;
  * @author NORUL
  */
 @Service
-@AllArgsConstructor
 @Slf4j
+@RequiredArgsConstructor
 public class CardServiceImpl implements CardService {
 
-    private CardRepository cardRepository;
-
+    private final CardRepository cardRepository;
 
     @Override
     public List<Card> findByBankName(String name) {

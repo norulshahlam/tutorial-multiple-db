@@ -1,11 +1,14 @@
 # Multiple databases for Spring Boot
 
 This tutorial shows how to run Spring Application using multiple databases. Database will be
-1. PosrgreSQL database
+1. PostgresSQL database
 2. MySQL database
 3. Oracle database
 
-As a bonus we will also show how to make a native query of `Tuple` type and how to handle them.
+As a bonus we will also show how to:
+
+1. Make a native query of `Tuple` type and how to handle them.
+2. Mock `Tuple` type in unit test.
 
 ### Technology used
 1. Docker
@@ -14,7 +17,7 @@ As a bonus we will also show how to make a native query of `Tuple` type and how 
 
 ### Step 1: Start the DB service on your local machine
 
-We will be using docker to start the DB service. [Download](https://www.docker.com/products/docker-desktop/) and install if you haven't yet. Once done, simply run the following command to start:
+We will be using docker to start the DB service. [Download](https://www.docker.com/products/docker-desktop/) and install if you haven't yet. Once done, simply run the following command in your terminal to start:
 
     docker run -d --name postgres -e POSTGRES_PASSWORD=password -e POSTGRES_USER=admin -p 5432:5432 postgres
 
