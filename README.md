@@ -71,6 +71,10 @@ Swagger is already set up for you with all the information so simply just start 
 
     http://localhost:8087/swagger-ui/index.html#/
 
+Swagger preview:
+
+![Image](./src/main/resources/swagger-ui.PNG)
+
 ### Useful resources
 
 [Swagger setup](https://medium.com/@stefan.paladuta17/spring-boot-using-swagger-at-maximum-grouping-definition-tag-2b25eb39a0cb)
@@ -78,6 +82,8 @@ Swagger is already set up for you with all the information so simply just start 
 [Sample reference](https://github.com/spring-framework-guru/sfg-blog-posts/blob/api-gateway/multiple-data-sources/src/main/java/guru/springframework/multipledatasources/model/member/Member.java)
 
 [Sample reference](https://github.com/eugenp/tutorials/blob/master/persistence-modules/spring-data-jpa-enterprise-2/src/main/java/com/baeldung/multipledb/PersistenceProductConfiguration.java)
+
+[Access multiple DB](https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-data-access-multiple-databases)
 
 
 
