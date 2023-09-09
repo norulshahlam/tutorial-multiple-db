@@ -5,10 +5,13 @@ This tutorial shows how to run Spring Application using multiple databases. Data
 2. MySQL database
 3. Oracle database
 
-As a bonus we will also show how to:
+### Overall features
 
-1. Make a native query of `Tuple` type and how to handle them.
-2. Mock `Tuple` type in unit test.
+1. Multiple database configuration.
+2. Running database instances using Docker.
+3. Load data from script on start.
+4. Make a native query of `Tuple` type and how to handle them.
+5. Mock `Tuple` type in unit test.
 
 ### Technology used
 1. Docker
@@ -78,6 +81,10 @@ Swagger preview:
 ### Useful resources
 
 [Swagger setup](https://medium.com/@stefan.paladuta17/spring-boot-using-swagger-at-maximum-grouping-definition-tag-2b25eb39a0cb)
+
+[Swagger setup](https://github.com/swagger-api/swagger-core/wiki/Annotations)
+
+[Swagger setup](https://piotrminkowski.com/2018/07/19/spring-rest-docs-versus-springfox-swagger-for-api-documentation/)
 
 [Sample reference](https://github.com/spring-framework-guru/sfg-blog-posts/blob/api-gateway/multiple-data-sources/src/main/java/guru/springframework/multipledatasources/model/member/Member.java)
 
